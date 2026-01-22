@@ -1995,8 +1995,13 @@ class ANSDecompiler:
                     except Exception as e:
                         self.log(f"Error decoding variable {obj_data['name']}: {e}")
 
+            # If binary parser succeeded but found nothing, try fallback
+            if len(self.functions) == 0 and len(self.variables) == 0:
+                self.log("Binary parser found no valid functions/variables, trying fallback method")
+                raise ValueError("No objects found, using fallback")
+
         except Exception as e:
-            self.log(f"Binary parser failed: {e}, falling back to old method")
+            self.log(f"Binary parser failed or found nothing: {e}, falling back to old method")
             # Fallback to original method
             self.parse_header()
             self.parse_object_table()

@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(xxd:*)"
+      "Bash(xxd:*)",
+      "Bash(python3:*)",
+      "Bash(grep:*)"
     ]
   }
 }
